@@ -21,15 +21,23 @@ section {
     padding-left: 120px;
     box-sizing:border-box;
 }
-#profile{
-	height: 400px;
-	width: 300px;
-	border: 1px green dashed;
+.row{
+	border: 3px black dashed;
 }
 #result{
 	background-color: white;
+	border: 2px green dashed;
+	padding: 5px 15px;
 }
-.caption{
+.col-sm-6{
+	height: 400px;
+	width: 400px;
 	border: 1px red dashed;
 	width: 100%;
+	margin: 5px 5px;
+}
+img{
+	border: 1px black solid;
+	width: 150px;
+	height: 200px;
 }
