@@ -11,7 +11,7 @@ name = newsoup.find_all("td", "sidearm-table-player-name")
 flag = 0
 
 for item in name:
-    newurl = "https://gohuskies.com/" + item.a.get("href")
+    newurl = "https://utahutes.com/" + item.a.get("href")
     personalPage = requests.get(newurl, headers={'User-Agent': 'Custom'})
     temp = personalPage.text
 
@@ -20,7 +20,7 @@ for item in name:
     firstName = names.find_all("span")[0].get_text()
     lastName = names.find_all("span")[1].get_text()
 
-    image = "https://gohuskies.com/" + newsoup.find("div", "sidearm-roster-player-image").find("img")["src"]
+    image = "https://utahutes.com/" + newsoup.find("div", "sidearm-roster-player-image").find("img")["src"]
     name = firstName + "_" + lastName + ".jpg"
     imageFile = requests.get(image, headers={'User-Agent': 'Custom'}, stream=True)
     output = open("UOU/image/" + name, "wb")
