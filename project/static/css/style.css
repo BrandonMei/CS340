@@ -1,0 +1,43 @@
+html, body {
+    margin: 0;
+    height:100%;
+    width:100%;
+    padding:0;
+}
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.container{
+	top: 40%;
+}
+section {
+    display: block;
+    background: orange;
+    height:100%;
+    width:100%;
+    padding: 60px;
+    padding-left: 120px;
+    box-sizing:border-box;
+}
+.row{
+	border: 3px black dashed;
+}
+#result{
+	background-color: white;
+	border: 2px green dashed;
+	padding: 5px 15px;
+}
+.col-sm-6{
+	height: 400px;
+	width: 400px;
+	border: 1px red dashed;
+	width: 100%;
+	margin: 5px 5px;
+}
+img{
+	border: 1px black solid;
+	width: 150px;
+	height: 200px;
+}
