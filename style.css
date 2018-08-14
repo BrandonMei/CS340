@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    height:100%;
+    width:100%;
+    padding:0;
+}
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.container{
+	top: 40%;
+}
+section {
+    display: block;
+    background: orange;
+    height:100%;
+    width:100%;
+    padding: 60px;
+    padding-left: 120px;
+    box-sizing:border-box;
+}
+#profile{
+	height: 400px;
+	width: 300px;
+	border: 1px green dashed;
+}
+#result{
+	background-color: white;
+}
+.caption{
+	border: 1px red dashed;
+	width: 100%;
+}
