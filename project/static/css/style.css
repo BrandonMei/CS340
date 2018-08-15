@@ -86,3 +86,6 @@ cursor: pointer;
 	.header-btn-edit{float:right;top:15px;position:absolute;right:12px;}
 	.header-btn-edit a{background:#2b7dc3;color:#fff;padding:10px;border-radius:20px;box-shadow:1px 1px 5px #eee;}
 	.header-btn-edit a i{color:#fff;padding-right:8px;}
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }

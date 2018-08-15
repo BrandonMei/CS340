@@ -18,9 +18,9 @@ def search(indexer, searchTerm, searchColumns):
 		for line in results:
 			print("--------------------------")
 			print(line)
-			print("--------------------------")
-			print(line['firstName'], line['lastName'])
-		
+			#print("--------------------------")
+			#print(line['firstName'], line['lastName'])
+
 
 def main():
 	Keyword = "Junior"
@@ -31,6 +31,6 @@ def main():
 
 	search(ix, Keyword, searchField)
 
-	
+
 
 main()
