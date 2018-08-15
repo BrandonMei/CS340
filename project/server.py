@@ -51,7 +51,7 @@ def result():
 	for i in range(len(result[8])):
 		temp = str(result[8][i]) + "/image/" + str(result[0][i]) + "_" + str(result[1][i]) +".jpg"
 		img.append(temp)
-	return render_template('result.html', query=query, results=zip(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], img))
+	return render_template('index.html', query=query, results=zip(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], img))
 
 
 

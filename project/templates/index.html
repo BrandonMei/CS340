@@ -3,25 +3,30 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
   <!--Bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<section>
+<section id="search-page">
 <div class="container">
-    <img id="Logo" src="{{ url_for('static', filename='images/PAC12.png')}}">
+	<div class=text-center>
+		<img id="Logo" src="{{ url_for('static', filename='images/PAC_12_Logo.svg')}}">
+	</div>
     <br/>
   <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
-                            <form method="get" class="card card-sm" action="{{ url_for('result') }}">
+                            <form method="get" action="#result">
                                 <div class="card-body row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <i class="fas fa-search h4 text-body"></i>
                                     </div>
                                     <!--end of col-->
                                     <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords" name="keywords">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="{{query}}" name="keywords">
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">
@@ -36,8 +41,112 @@
 </div>
 </section>
 
+<section id="result">
+<div class="row">
+{% for firstName, lastName, Position, Height, Weight, Class, Hometown, HighSchool,img in results %}
+<div class="thumbnail">
+        <img src="{{ url_for('static',filename=img) }}" alt="Profile Picture">
+        <div class="caption">
+          <a data-toggle="modal" data-target="#myModal"><h3>{{firstName}} {{lastName}}</h3></a>
+          <hr class="col-md-3">
+		  <br>
+          <p>
+            <strong>Position :{{Position}}</strong>
+            <br>
+            <strong>height :{{Height}}</strong>
+            <br>
+            <strong>weight :{{Weight}}</strong>
+            <br>
+            <strong>class :{{Class}} </strong>
+            <br>
+            <strong>Hometown :{{Hometown}}</strong>
+            <br>
+            <strong>High School :{{HighSchool}}</strong>
+            <br>
+          </p>
+        </div>
+      </div>
+  {% if loop.index is divisibleby 4 %}
+  </div>
+  <div class="row">
+  {% endif %}
+  {% endfor %}
 
+  </div><!--row-->
 
+  </div>
 
+  <a id="Go-top" href="#search-page">
+	  <span class="glyphicon glyphicon-chevron-up"  aria-hidden="true"></span>
+  </a>
 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+  	<!-- Modal content-->
+  	<div class="modal-content">
+  		<div class="modal-header">
+  	<h4 class="modal-title">{{firstName}} {{lastName}}</h4>
+    </div>
+  	   <div class="modal-body">
+  		  <!--Content-->
+  			 <div class="prof-page-info">
+    <div class="row">
+  	  <div class="col-md-3">
+  		 <div class="prof-img">
+  			<img src="{{ url_for('static',filename=img) }}">
+  		 </div>
+  	  </div>
+
+  	  <div class="col-6">
+  		  <!--img src="Img/Oregon_State_Beavers_logo.svg" height='300' width="300"-->
+  		  <canvas id="radarChart" style="max-width: 500px;"></canvas>
+  		  <script>
+  		  //radar
+  		  var ctxR = document.getElementById("radarChart").getContext('2d');
+  		  var myRadarChart = new Chart(ctxR, {
+  			  type: 'radar',
+  			  data: {
+  				  labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+  				  datasets: [
+  					  {
+  						  label: "My First dataset",
+  						  fillColor: "rgba(220,220,220,0.2)",
+  						  strokeColor: "rgba(220,220,220,1)",
+  						  pointColor: "rgba(220,220,220,1)",
+  						  pointStrokeColor: "#fff",
+  						  pointHighlightFill: "#fff",
+  						  pointHighlightStroke: "rgba(220,220,220,1)",
+  						  data: [65, 59, 90, 81, 56, 55, 40]
+  					  }
+  				  ]
+  			  },
+  			  options: {
+  				  responsive: true,
+  				  chartArea: {'width': '100%', 'height': '80%'}
+  			  }
+  		  });
+  		  </script>
+  	  </div>
+
+  	  <div class="col-md-4">
+  		 <div class="prof-info">
+
+  		 <div class="info"><label>First Name :</label>  <span>Jolly Kewin</span></div>
+  		  <div class="info"><label>Last Name :</label>  <span> Tomson</span></div>
+  		 <div class="info"><label></i>Date Of Birth :</label>  <span>6-9-1993</span></div>
+  		 <div class="info"><label></i>Height :</label>  <span>5.10"</span></div>
+  		 <div class="info"><label></i>Weight :</label>  <span>65Kg</span></div>
+  		 <div class="info"><label></i>State :</label>  <span>Maharashtra , India</span></div>
+  		 <div class="info"><label></i>Zip Code :</label>  <span>656605</span></div>
+
+  		  </div>
+  	  </div>
+    </div>
+	<div class="modal-footer">
+	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  			 </div>
+  </div><!--Modal-->
+</section>
 </body>
