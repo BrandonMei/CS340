@@ -96,26 +96,22 @@
   </a>
 
   <!--No Result-->
-  <div id='not_found' class="container hidden">
+  {% if leng == 0 %}
+  <div id='not_found'>
     <div class="col-md-12">
               <div class="error-template">
                   <h1>Oops!</h1>
                   <h2>No results found</h2>
                   <div class="error-actions">
-                   <a onclick="add_hide()"href="#search-page" class="btn btn-primary btn-lg">
+                   <a  href="{{url_for('index')}}" class="btn btn-primary btn-lg">
             		<span class=" glyphicon glyphicon-arrow-up"></span>
             		Search Again
           			</a>
                   </div>
               </div>
           </div>
-		<script>
-		function add_hide() {
-			var element = document.getElementById("not_found");
-			element.classList.add("hidden");
-			}
-		</script>
   </div>
+  {% endif %}
 
   {% for player in stats %}
  <div class="modal fade" id="{{player.counter}}" role="dialog">

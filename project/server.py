@@ -70,7 +70,8 @@ def result():
 		#print(item)
 		img = item['College'] + "/image/" + item["firstName"] + "_" + item["lastName"] + ".jpg"
 		item["img"] = img
-	return render_template('index.html', query=query, results=result,stats=result,scroll="result")
+	leng = len(result)
+	return render_template('index.html', query=query, results=result,stats=result,scroll="result",leng=leng)
 
 if __name__ == '__main__':
 	app.run(debug=True)
