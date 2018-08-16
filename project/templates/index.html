@@ -58,19 +58,19 @@
           <hr class="col-md-3">
 		  <br>
           <p>
-            <strong>Position :{{player.Position}}</strong>
+            <strong>Position : {{player.Position}}</strong>
             <br>
-            <strong>Height :{{player.Height}}</strong>
+            <strong>Height : {{player.Height}}</strong>
             <br>
-            <strong>Weight :{{player.Weight}}</strong>
+            <strong>Weight : {{player.Weight}}</strong>
             <br>
-            <strong>Class :{{player.Class}} </strong>
+            <strong>Class : {{player.Class}} </strong>
             <br>
-            <strong>Hometown :{{player.Hometown}}</strong>
+            <strong>Hometown : {{player.Hometown}}</strong>
             <br>
-            <strong>High School :{{player.HighSchool}}</strong>
+            <strong>High School : {{player.Highschool}}</strong>
             <br>
-            <strong>College :{{player.College}}</strong>
+            <strong>College : {{player.College}}</strong>
             <br>
           </p>
 
@@ -115,249 +115,246 @@
     </div>
        <div class="modal-body">
         <!--Content-->
-         <div class="prof-page-info">
-    <div class="row">
-      <div class="col-md-3">
-       <div class="prof-img">
-        <img src="{{ url_for('static',filename=player.img) }}">
-       </div>
-      </div>
+		<div class="row">
+			<div class="col-sm-3 " >
+				<div class="prof-img">
+				<img src="{{ url_for('static',filename=player.img) }}">
+			 </div>
+			</div>
+			<div class="col" >
+				<div class="row justify-content-md-center">
+					<div class="col-10" >
+						<canvas id="radarChart"></canvas>
+						  <script>
+						  //radar
+						  var ctxR = document.getElementById("radarChart").getContext('2d');
+						  var myRadarChart = new Chart(ctxR, {
+							  type: 'radar',
+							  data: {
+								  labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+								  datasets: [
+									  {
+										  label: "My First dataset",
+										  fillColor: "rgba(220,220,220,0.2)",
+										  strokeColor: "rgba(220,220,220,1)",
+										  pointColor: "rgba(220,220,220,1)",
+										  pointStrokeColor: "#fff",
+										  pointHighlightFill: "#fff",
+										  pointHighlightStroke: "rgba(220,220,220,1)",
+										  data: [65, 59, 90, 81, 56, 55, 40]
+									  }
+								  ]
+							  },
+							  options: {
 
-      <div class="col-7">
-        <canvas id="radarChart" style="max-width: 500px;"></canvas>
-        <script>
-        //radar
-        var ctxR = document.getElementById("radarChart").getContext('2d');
-        var myRadarChart = new Chart(ctxR, {
-          type: 'radar',
-          data: {
-            labels: ["Batting Average(avg)", "Slugging Percentage(SL)", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-            datasets: [
-              {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 90, 81, 56, 55, 40]
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-        chartArea: {'width': '100%', 'height': '80%'},
-        scale: {
-          pointLabels: {
-          fontSize: 15
-        }
-        }
-          }
-        });
-        </script>
-      </div>
+								}
+						  });
+						  </script>
+					</div>
+					<div class="w-100"></div>
+					<div class="row w-100">
 
-      <div class="col-md-4">
-       <div class="prof-info">
+						<div class="col">
+							<div class="info"><label></i>Position : </label>  <span>{{player.Position}}</span></div>
+							<div class="info"><label></i>Height : </label>  <span>{{player.Height}}</span></div>
+							<div class="info"><label></i>Weight : </label>  <span>{{player.Weight}}</span></div>
+							<div class="info"><label></i>Class : </label>  <span>{{player.Class}}</span></div>
+						</div>
+						<div class="col">
+							<div class="info"><label></i>Hometown : </label>  <span>{{player.Hometown}}</span></div>
+							<div class="info"><label></i>Hight School : </label>  <span>{{player.Highschool}}</span></div>
+							<div class="info"><label></i>College	 : </label>  <span>{{player.College}}</span></div>
+						</div>
 
-       <div class="info"><label></i>Position :</label>  <span>6-9-1993</span></div>
-       <div class="info"><label></i>Height :</label>  <span>{{Height}}</span></div>
-       <div class="info"><label></i>Weight :</label>  <span>65Kg</span></div>
-       <div class="info"><label></i>Class :</label>  <span>Maharashtra , India</span></div>
-       <div class="info"><label></i>Hometown :</label>  <span>656605</span></div>
-     <div class="info"><label></i>Hight School :</label>  <span>656605</span></div>
-        </div>
-      </div>
-	  <div class="table-responsive">
-  		<table class="table table-striped">
-  						<caption>Career Hitting Statistics</caption>
-  						<thead>
-  							<tr>
-  								<th scope="col" class="text-hide">Season</th>
-  								<th scope="col">AVG</th>
-  								<th scope="col">GP</th>
-  								<th scope="col">GS</th>
-  								<th scope="col">AB</th>
-  								<th scope="col">R</th>
-  								<th scope="col">H</th>
-  								<th scope="col">2B</th>
-  								<th scope="col">3B</th>
-  								<th scope="col">HR</th>
-  								<th scope="col">RBI</th>
-  								<th scope="col">SLG%</th>
-  								<th scope="col">BB</th>
-  								<th scope="col">HBP</th>
-  								<th scope="col">SO</th>
-  								<th scope="col">GDP</th>
-  								<th scope="col">OB%</th>
-  								<th scope="col">SF</th>
-  								<th scope="col">SH</th>
-  								<th scope="col">SB</th>
-  								<th scope="col">PO</th>
-  								<th scope="col">A</th>
-  								<th scope="col">E</th>
-  								<th scope="col">FLD%</th>
-  							</tr>
-  						</thead>
-  						<tbody>
+				</div>
+			</div>
+			</div>
+			<div class="table-responsive">
+	    		<table class="table table-striped">
+	    						<caption>Career Hitting Statistics</caption>
+	    						<thead>
+	    							<tr>
+	    								<th scope="col" class="text-hide">Season</th>
+	    								<th scope="col">AVG</th>
+	    								<th scope="col">GP</th>
+	    								<th scope="col">GS</th>
+	    								<th scope="col">AB</th>
+	    								<th scope="col">R</th>
+	    								<th scope="col">H</th>
+	    								<th scope="col">2B</th>
+	    								<th scope="col">3B</th>
+	    								<th scope="col">HR</th>
+	    								<th scope="col">RBI</th>
+	    								<th scope="col">SLG%</th>
+	    								<th scope="col">BB</th>
+	    								<th scope="col">HBP</th>
+	    								<th scope="col">SO</th>
+	    								<th scope="col">GDP</th>
+	    								<th scope="col">OB%</th>
+	    								<th scope="col">SF</th>
+	    								<th scope="col">SH</th>
+	    								<th scope="col">SB</th>
+	    								<th scope="col">PO</th>
+	    								<th scope="col">A</th>
+	    								<th scope="col">E</th>
+	    								<th scope="col">FLD%</th>
+	    							</tr>
+	    						</thead>
+	    						<tbody>
 
-  								<tr>
-  									<th scope="row">2018</th>
-  									<td class="text-center">.000</td>
-  									<td class="text-center">12</td>
-  									<td class="text-center">2</td>
-  									<td class="text-center">7</td>
-  									<td class="text-center">3</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">.000</td>
-  									<td class="text-center">1</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">2</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">.125</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">1</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">4</td>
-  									<td class="text-center">5</td>
-  									<td class="text-center">0</td>
-  									<td class="text-center">1.000</td>
-  								</tr>
+	    								<tr>
+	    									<th scope="row">2018</th>
+	    									<td class="text-center">.000</td>
+	    									<td class="text-center">12</td>
+	    									<td class="text-center">2</td>
+	    									<td class="text-center">7</td>
+	    									<td class="text-center">3</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">.000</td>
+	    									<td class="text-center">1</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">2</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">.125</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">1</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">4</td>
+	    									<td class="text-center">5</td>
+	    									<td class="text-center">0</td>
+	    									<td class="text-center">1.000</td>
+	    								</tr>
 
-  						</tbody>
-  						<tfoot>
-  							<tr>
-  								<th scope="row">Total</th>
-  								<td class="text-center">.000</td>
-  								<td class="text-center">12</td>
-  								<td class="text-center">2</td>
-  								<td class="text-center">7</td>
-  								<td class="text-center">3</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">.000</td>
-  								<td class="text-center">1</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">2</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">.125</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">1</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">4</td>
-  								<td class="text-center">5</td>
-  								<td class="text-center">0</td>
-  								<td class="text-center">1.000</td>
-  							</tr>
-  						</tfoot>
-  					</table>
-  	</div>
+	    						</tbody>
+	    						<tfoot>
+	    							<tr>
+	    								<th scope="row">Total</th>
+	    								<td class="text-center">.000</td>
+	    								<td class="text-center">12</td>
+	    								<td class="text-center">2</td>
+	    								<td class="text-center">7</td>
+	    								<td class="text-center">3</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">.000</td>
+	    								<td class="text-center">1</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">2</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">.125</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">1</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">4</td>
+	    								<td class="text-center">5</td>
+	    								<td class="text-center">0</td>
+	    								<td class="text-center">1.000</td>
+	    							</tr>
+	    						</tfoot>
+	    					</table>
+		</div>
+		<div class="table-responsive">
+    		<table class="table table-striped">
+    						<caption>Career Hitting Statistics</caption>
+    						<thead>
+    							<tr>
+    								<th scope="col" class="text-hide">Season</th>
+    								<th scope="col">AVG</th>
+    								<th scope="col">GP</th>
+    								<th scope="col">GS</th>
+    								<th scope="col">AB</th>
+    								<th scope="col">R</th>
+    								<th scope="col">H</th>
+    								<th scope="col">2B</th>
+    								<th scope="col">3B</th>
+    								<th scope="col">HR</th>
+    								<th scope="col">RBI</th>
+    								<th scope="col">SLG%</th>
+    								<th scope="col">BB</th>
+    								<th scope="col">HBP</th>
+    								<th scope="col">SO</th>
+    								<th scope="col">GDP</th>
+    								<th scope="col">OB%</th>
+    								<th scope="col">SF</th>
+    								<th scope="col">SH</th>
+    								<th scope="col">SB</th>
+    								<th scope="col">PO</th>
+    								<th scope="col">A</th>
+    								<th scope="col">E</th>
+    								<th scope="col">FLD%</th>
+    							</tr>
+    						</thead>
+    						<tbody>
 
-  	<div class="table-responsive">
-  	  <table class="table table-striped">
-  					  <caption>Career Hitting Statistics</caption>
-  					  <thead>
-  						  <tr>
-  							  <th scope="col" class="text-hide">Season</th>
-  							  <th scope="col">AVG</th>
-  							  <th scope="col">GP</th>
-  							  <th scope="col">GS</th>
-  							  <th scope="col">AB</th>
-  							  <th scope="col">R</th>
-  							  <th scope="col">H</th>
-  							  <th scope="col">2B</th>
-  							  <th scope="col">3B</th>
-  							  <th scope="col">HR</th>
-  							  <th scope="col">RBI</th>
-  							  <th scope="col">SLG%</th>
-  							  <th scope="col">BB</th>
-  							  <th scope="col">HBP</th>
-  							  <th scope="col">SO</th>
-  							  <th scope="col">GDP</th>
-  							  <th scope="col">OB%</th>
-  							  <th scope="col">SF</th>
-  							  <th scope="col">SH</th>
-  							  <th scope="col">SB</th>
-  							  <th scope="col">PO</th>
-  							  <th scope="col">A</th>
-  							  <th scope="col">E</th>
-  							  <th scope="col">FLD%</th>
-  						  </tr>
-  					  </thead>
-  					  <tbody>
+    								<tr>
+    									<th scope="row">2018</th>
+    									<td class="text-center">.000</td>
+    									<td class="text-center">12</td>
+    									<td class="text-center">2</td>
+    									<td class="text-center">7</td>
+    									<td class="text-center">3</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">.000</td>
+    									<td class="text-center">1</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">2</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">.125</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">1</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">4</td>
+    									<td class="text-center">5</td>
+    									<td class="text-center">0</td>
+    									<td class="text-center">1.000</td>
+    								</tr>
 
-  							  <tr>
-  								  <th scope="row">2018</th>
-  								  <td class="text-center">.000</td>
-  								  <td class="text-center">12</td>
-  								  <td class="text-center">2</td>
-  								  <td class="text-center">7</td>
-  								  <td class="text-center">3</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">.000</td>
-  								  <td class="text-center">1</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">2</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">.125</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">1</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">4</td>
-  								  <td class="text-center">5</td>
-  								  <td class="text-center">0</td>
-  								  <td class="text-center">1.000</td>
-  							  </tr>
-
-  					  </tbody>
-  					  <tfoot>
-  						  <tr>
-  							  <th scope="row">Total</th>
-  							  <td class="text-center">.000</td>
-  							  <td class="text-center">12</td>
-  							  <td class="text-center">2</td>
-  							  <td class="text-center">7</td>
-  							  <td class="text-center">3</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">.000</td>
-  							  <td class="text-center">1</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">2</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">.125</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">1</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">4</td>
-  							  <td class="text-center">5</td>
-  							  <td class="text-center">0</td>
-  							  <td class="text-center">1.000</td>
-  						  </tr>
-  					  </tfoot>
-  				  </table>
-    </div>
-    </div><!--row-->
-  <div class="modal-footer">
-   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-         </div>
-  </div><!--Modal-->
+    						</tbody>
+    						<tfoot>
+    							<tr>
+    								<th scope="row">Total</th>
+    								<td class="text-center">.000</td>
+    								<td class="text-center">12</td>
+    								<td class="text-center">2</td>
+    								<td class="text-center">7</td>
+    								<td class="text-center">3</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">.000</td>
+    								<td class="text-center">1</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">2</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">.125</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">1</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">4</td>
+    								<td class="text-center">5</td>
+    								<td class="text-center">0</td>
+    								<td class="text-center">1.000</td>
+    							</tr>
+    						</tfoot>
+    					</table>
+		<!--Modal-->
+  		</div>
+		<div class="modal-footer">
+  	     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  	  </div>
   </div>
   </div>
   </div>
