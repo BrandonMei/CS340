@@ -49,44 +49,35 @@
 
 <section id="result">
 <div class="row">
-{% for firstName, lastName, Position, Height, Weight, Class, Hometown, HighSchool,College,img in results %}
-<form id='detail_button' data-toggle="modal" data-target="#myModal" method="get" action="{{url_for('Modal')}}">
-<input class="hidden" name="query" value={{query}}>
-<input class="hidden" name="img" value={{img}}>
-<input class="hidden" name="firstName" value={{firstName}}>
-<input class="hidden" name="lastName" value={{lastName}}>
-<input class="hidden" name="College" value={{College}}>
+{% for player in results %}
+<form id='detail_button' data-toggle="modal" data-target="#{{player.counter}}">
 	<div id='{{img}}' class="thumbnail">
-        <img src="{{ url_for('static',filename=img) }}" alt="Profile Picture">
+        <img src="{{ url_for('static',filename=player.img) }}" alt="Profile Picture">
         <div class="caption">
-          <h3>{{firstName}} {{lastName}}</h3>
+          <h3>{{player.firstName}} {{player.lastName}}</h3>
           <hr class="col-md-3">
 		  <br>
           <p>
-            <strong>Position :{{Position}}</strong>
+            <strong>Position :{{player.Position}}</strong>
             <br>
-            <strong>Height :{{Height}}</strong>
+            <strong>Height :{{player.Height}}</strong>
             <br>
-            <strong>Weight :{{Weight}}</strong>
+            <strong>Weight :{{player.Weight}}</strong>
             <br>
-            <strong>Class :{{Class}} </strong>
+            <strong>Class :{{player.Class}} </strong>
             <br>
-            <strong>Hometown :{{Hometown}}</strong>
+            <strong>Hometown :{{player.Hometown}}</strong>
             <br>
-            <strong>High School :{{HighSchool}}</strong>
+            <strong>High School :{{player.HighSchool}}</strong>
             <br>
-            <strong>College :{{College}}</strong>
-            <br>
-            <br>
-            <button class="btn btn-lg btn-success" type="submit">Detail</button>
+            <strong>College :{{player.College}}</strong>
             <br>
           </p>
 
         </div>
       </div>
 	</form>
-
-  {% endfor %}
+{% endfor %}
 
   </div><!--row-->
 
@@ -112,6 +103,83 @@
           </div>
   </div>
 
+   <!-- Modal -->
+  {% for player in stats %}
+  <div class="modal fade" id="{{player.counter}}" role="dialog">
+  
+      <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+    <h4 class="modal-title">{{player.firstName}} {{player.lastName}}</h4>
+    </div>
+       <div class="modal-body">
+        <!--Content-->
+         <div class="prof-page-info">
+    <div class="row">
+      <div class="col-md-3">
+       <div class="prof-img">
+        <img src="{{ url_for('static',filename=player.img) }}">
+       </div>
+      </div>
+
+      <div class="col-7">
+        <canvas id="radarChart" style="max-width: 500px;"></canvas>
+        <script>
+        //radar
+        var ctxR = document.getElementById("radarChart").getContext('2d');
+        var myRadarChart = new Chart(ctxR, {
+          type: 'radar',
+          data: {
+            labels: ["Batting Average(avg)", "Slugging Percentage(SL)", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+            datasets: [
+              {
+                label: "My First dataset",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [65, 59, 90, 81, 56, 55, 40]
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+        chartArea: {'width': '100%', 'height': '80%'},
+        scale: {
+          pointLabels: {
+          fontSize: 15
+        }
+        }
+          }
+        });
+        </script>
+      </div>
+
+      <div class="col-md-4">
+       <div class="prof-info">
+
+       <div class="info"><label></i>Position :</label>  <span>6-9-1993</span></div>
+       <div class="info"><label></i>Height :</label>  <span>{{Height}}</span></div>
+       <div class="info"><label></i>Weight :</label>  <span>65Kg</span></div>
+       <div class="info"><label></i>Class :</label>  <span>Maharashtra , India</span></div>
+       <div class="info"><label></i>Hometown :</label>  <span>656605</span></div>
+     <div class="info"><label></i>Hight School :</label>  <span>656605</span></div>
+        </div>
+      </div>
+    </div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+         </div>
+  </div><!--Modal-->
+  </div>
+  </div>
+  </div>
+  {% endfor %}
+  
   <!---->
 </section>
 </body>
