@@ -40,7 +40,7 @@
                                     </div>
                                     <!--end of col-->
                                     <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="{{query}}" name="keywords">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="{{query}}" name="keywords" required>
                                     </div>
                                     <!--end of col-->
                                     <div class="col-auto">
@@ -96,19 +96,25 @@
   </a>
 
   <!--No Result-->
-  <div class="container hidden">
+  <div id='not_found' class="container hidden">
     <div class="col-md-12">
               <div class="error-template">
                   <h1>Oops!</h1>
                   <h2>No results found</h2>
                   <div class="error-actions">
-                   <a href="#search-page" class="btn btn-primary btn-lg">
-            <span class=" glyphicon glyphicon-arrow-up"></span>
-            Search Again
-          </a>
+                   <a onclick="add_hide()"href="#search-page" class="btn btn-primary btn-lg">
+            		<span class=" glyphicon glyphicon-arrow-up"></span>
+            		Search Again
+          			</a>
                   </div>
               </div>
           </div>
+		<script>
+		function add_hide() {
+			var element = document.getElementById("not_found");
+			element.classList.add("hidden");
+			}
+		</script>
   </div>
 
   {% for player in stats %}
