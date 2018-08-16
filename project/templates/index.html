@@ -19,6 +19,14 @@
 {% endif %}
 <section id="search-page">
 <div class="container">
+	<div class="row">
+	<div class="col-auto">
+	<img src="{{ url_for('static', filename='images/ball.svg')}}" style="width:40px;">
+	</div>
+	<div class="col-sm-6">
+	<p style="font-size: 30px;color:black">Databaseball</p>
+	</div>
+	</div>
   <div class=text-center>
     <img id="Logo" src="{{ url_for('static', filename='images/PAC_12_Logo.svg')}}">
   </div>
@@ -111,16 +119,17 @@
    <div class="modal-content">
 	 <div class="modal-header">
    <h4 class="modal-title">{{player.firstName}} {{player.lastName}}</h4>
-   </div>
+	</div>
 	  <div class="modal-body">
 	   <!--Content-->
 		<div class="prof-page-info">
    <div class="row">
-	 <div class="col-md-3 vcenter" >
-	  <div class="prof-img">
-	   <img src="{{ url_for('static',filename=player.img) }}">
+	 <div class="col-md-3" >
+		 <div class="prof-img">
+		 <img src="{{ url_for('static',filename=player.img) }}" alt="Profile Picture">
 	  </div>
 	 </div>
+
 		 <div class="col align-self-center" >
 			<div class="prof-info">
 			  <div class="info"><label></i>Position :</label>  <span>{{player.Position}}</span></div>
@@ -136,8 +145,9 @@
 			</div>
 		</div>
 	</div><!--Row-->
+	<br>
 	<div class="row">
-		<div class="col-7">
+		<div class="col">
    	   <canvas id="hitradarChart{{player.counter}}" style="max-width: 500px;"></canvas>
    	   <script>
    	   //radar
@@ -206,6 +216,7 @@
  	   </script>
  	 </div>
 	</div><!--Row-->
+	<br>
 	 <div class="table-responsive">
 	 <table class="table table-striped">
 			 <caption>Career Hitting Statistics</caption>
@@ -268,8 +279,6 @@
 
 			 </tbody>
 			 </table>
-			 <br>
-			 <br>
 			 <table class="table table-striped">
 			 <caption>Career Pitching Statistics</caption>
 			 <thead>
