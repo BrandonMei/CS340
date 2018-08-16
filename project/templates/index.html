@@ -4,12 +4,12 @@
   <!--Bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<meta charset="utf-8">
+  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title> PAC 12 </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title> PAC 12 </title>
 </head>
 <body>
 {% if scroll %}
@@ -19,9 +19,9 @@
 {% endif %}
 <section id="search-page">
 <div class="container">
-	<div class=text-center>
-		<img id="Logo" src="{{ url_for('static', filename='images/PAC_12_Logo.svg')}}">
-	</div>
+  <div class=text-center>
+    <img id="Logo" src="{{ url_for('static', filename='images/PAC_12_Logo.svg')}}">
+  </div>
     <br/>
   <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
@@ -51,12 +51,12 @@
 <div class="row">
 {% for player in results %}
 <form id='detail_button' data-toggle="modal" data-target="#{{player.counter}}">
-	<div id='{{img}}' class="thumbnail">
+  <div id='{{img}}' class="thumbnail">
         <img src="{{ url_for('static',filename=player.img) }}" alt="Profile Picture">
         <div class="caption">
           <h3>{{player.firstName}} {{player.lastName}}</h3>
           <hr class="col-md-3">
-		  <br>
+      <br>
           <p>
             <strong>Position : {{player.Position}}</strong>
             <br>
@@ -76,7 +76,7 @@
 
         </div>
       </div>
-	</form>
+  </form>
 {% endfor %}
 
   </div><!--row-->
@@ -84,281 +84,266 @@
   </div>
 
   <a id="Go-top" href="#search-page">
-	  <span class="glyphicon glyphicon-chevron-up"  aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-chevron-up"  aria-hidden="true"></span>
   </a>
 
-	<!--No Result-->
+  <!--No Result-->
   <div class="container hidden">
-  	<div class="col-md-12">
+    <div class="col-md-12">
               <div class="error-template">
                   <h1>Oops!</h1>
                   <h2>No results found</h2>
                   <div class="error-actions">
                    <a href="#search-page" class="btn btn-primary btn-lg">
-  					<span class="	glyphicon glyphicon-arrow-up"></span>
-  					Search Again
-  				</a>
+            <span class=" glyphicon glyphicon-arrow-up"></span>
+            Search Again
+          </a>
                   </div>
               </div>
           </div>
   </div>
 
-   <!-- Modal -->
   {% for player in stats %}
-  <div class="modal fade" id="{{player.counter}}" role="dialog">
+ <div class="modal fade" id="{{player.counter}}" role="dialog">
 
-      <div class="modal-dialog modal-lg">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-    <h4 class="modal-title">{{player.firstName}} {{player.lastName}}</h4>
-    </div>
-       <div class="modal-body">
-        <!--Content-->
-		<div class="row">
-			<div class="col-sm-3 " >
-				<div class="prof-img">
-				<img src="{{ url_for('static',filename=player.img) }}">
-			 </div>
+	 <div class="modal-dialog modal-lg">
+   <!-- Modal content-->
+   <div class="modal-content">
+	 <div class="modal-header">
+   <h4 class="modal-title">{{player.firstName}} {{player.lastName}}</h4>
+   </div>
+	  <div class="modal-body">
+	   <!--Content-->
+		<div class="prof-page-info">
+   <div class="row">
+	 <div class="col-md-3 vcenter" >
+	  <div class="prof-img">
+	   <img src="{{ url_for('static',filename=player.img) }}">
+	  </div>
+	 </div>
+		 <div class="col align-self-center" >
+			<div class="prof-info">
+			  <div class="info"><label></i>Position :</label>  <span>{{player.Position}}</span></div>
+			  <div class="info"><label></i>Height :</label>  <span>{{player.Height}}</span></div>
+			  <div class="info"><label></i>Weight :</label>  <span>{{player.Weight}}</span></div>
 			</div>
-			<div class="col" >
-				<div class="row justify-content-md-center">
-					<div class="col-10" >
-						<canvas id="radarChart"></canvas>
-						  <script>
-						  //radar
-						  var ctxR = document.getElementById("radarChart").getContext('2d');
-						  var myRadarChart = new Chart(ctxR, {
-							  type: 'radar',
-							  data: {
-								  labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-								  datasets: [
-									  {
-										  label: "My First dataset",
-										  fillColor: "rgba(220,220,220,0.2)",
-										  strokeColor: "rgba(220,220,220,1)",
-										  pointColor: "rgba(220,220,220,1)",
-										  pointStrokeColor: "#fff",
-										  pointHighlightFill: "#fff",
-										  pointHighlightStroke: "rgba(220,220,220,1)",
-										  data: [65, 59, 90, 81, 56, 55, 40]
-									  }
-								  ]
-							  },
-							  options: {
-
-								}
-						  });
-						  </script>
-					</div>
-					<div class="w-100"></div>
-					<div class="row w-100">
-
-						<div class="col">
-							<div class="info"><label></i>Position : </label>  <span>{{player.Position}}</span></div>
-							<div class="info"><label></i>Height : </label>  <span>{{player.Height}}</span></div>
-							<div class="info"><label></i>Weight : </label>  <span>{{player.Weight}}</span></div>
-							<div class="info"><label></i>Class : </label>  <span>{{player.Class}}</span></div>
-						</div>
-						<div class="col">
-							<div class="info"><label></i>Hometown : </label>  <span>{{player.Hometown}}</span></div>
-							<div class="info"><label></i>Hight School : </label>  <span>{{player.Highschool}}</span></div>
-							<div class="info"><label></i>College	 : </label>  <span>{{player.College}}</span></div>
-						</div>
-
-				</div>
-			</div>
-			</div>
-			<div class="table-responsive">
-	    		<table class="table table-striped">
-	    						<caption>Career Hitting Statistics</caption>
-	    						<thead>
-	    							<tr>
-	    								<th scope="col" class="text-hide">Season</th>
-	    								<th scope="col">AVG</th>
-	    								<th scope="col">GP</th>
-	    								<th scope="col">GS</th>
-	    								<th scope="col">AB</th>
-	    								<th scope="col">R</th>
-	    								<th scope="col">H</th>
-	    								<th scope="col">2B</th>
-	    								<th scope="col">3B</th>
-	    								<th scope="col">HR</th>
-	    								<th scope="col">RBI</th>
-	    								<th scope="col">SLG%</th>
-	    								<th scope="col">BB</th>
-	    								<th scope="col">HBP</th>
-	    								<th scope="col">SO</th>
-	    								<th scope="col">GDP</th>
-	    								<th scope="col">OB%</th>
-	    								<th scope="col">SF</th>
-	    								<th scope="col">SH</th>
-	    								<th scope="col">SB</th>
-	    								<th scope="col">PO</th>
-	    								<th scope="col">A</th>
-	    								<th scope="col">E</th>
-	    								<th scope="col">FLD%</th>
-	    							</tr>
-	    						</thead>
-	    						<tbody>
-
-	    								<tr>
-	    									<th scope="row">2018</th>
-	    									<td class="text-center">.000</td>
-	    									<td class="text-center">12</td>
-	    									<td class="text-center">2</td>
-	    									<td class="text-center">7</td>
-	    									<td class="text-center">3</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">.000</td>
-	    									<td class="text-center">1</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">2</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">.125</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">1</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">4</td>
-	    									<td class="text-center">5</td>
-	    									<td class="text-center">0</td>
-	    									<td class="text-center">1.000</td>
-	    								</tr>
-
-	    						</tbody>
-	    						<tfoot>
-	    							<tr>
-	    								<th scope="row">Total</th>
-	    								<td class="text-center">.000</td>
-	    								<td class="text-center">12</td>
-	    								<td class="text-center">2</td>
-	    								<td class="text-center">7</td>
-	    								<td class="text-center">3</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">.000</td>
-	    								<td class="text-center">1</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">2</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">.125</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">1</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">4</td>
-	    								<td class="text-center">5</td>
-	    								<td class="text-center">0</td>
-	    								<td class="text-center">1.000</td>
-	    							</tr>
-	    						</tfoot>
-	    					</table>
 		</div>
-		<div class="table-responsive">
-    		<table class="table table-striped">
-    						<caption>Career Hitting Statistics</caption>
-    						<thead>
-    							<tr>
-    								<th scope="col" class="text-hide">Season</th>
-    								<th scope="col">AVG</th>
-    								<th scope="col">GP</th>
-    								<th scope="col">GS</th>
-    								<th scope="col">AB</th>
-    								<th scope="col">R</th>
-    								<th scope="col">H</th>
-    								<th scope="col">2B</th>
-    								<th scope="col">3B</th>
-    								<th scope="col">HR</th>
-    								<th scope="col">RBI</th>
-    								<th scope="col">SLG%</th>
-    								<th scope="col">BB</th>
-    								<th scope="col">HBP</th>
-    								<th scope="col">SO</th>
-    								<th scope="col">GDP</th>
-    								<th scope="col">OB%</th>
-    								<th scope="col">SF</th>
-    								<th scope="col">SH</th>
-    								<th scope="col">SB</th>
-    								<th scope="col">PO</th>
-    								<th scope="col">A</th>
-    								<th scope="col">E</th>
-    								<th scope="col">FLD%</th>
-    							</tr>
-    						</thead>
-    						<tbody>
+		<div class="col align-self-center" >
+			<div class="prof-info">
+			<div class="info"><label></i>Class :</label>  <span>{{player.Class}}</span></div>
+			<div class="info"><label></i>Hometown :</label>  <span>{{player.Hometown}}</span></div>
+			<div class="info"><label></i>Hight School :</label>  <span>{{player.Highschool}}</span></div>
+			</div>
+		</div>
+	</div><!--Row-->
+	<div class="row">
+		<div class="col-7">
+   	   <canvas id="hitradarChart{{player.counter}}" style="max-width: 500px;"></canvas>
+   	   <script>
+   	   //radar
+   	   var ctxR = document.getElementById("hitradarChart{{player.counter}}").getContext('2d');
+   	   var myRadarChart = new Chart(ctxR, {
+   		 type: 'radar',
+   		 data: {
+   		   labels: ["AVG", "SLG", "OB", "FLD"],
+   		   datasets: [
+   			 {
+   			   label: "{{player.firstName}} {{player.lastName}}\'s Hitting Statistics",
+   			   fillColor: "rgba(220,220,220,0.2)",
+   			   strokeColor: "rgba(220,220,220,1)",
+   			   pointColor: "rgba(220,220,220,1)",
+   			   pointStrokeColor: "#fff",
+   			   pointHighlightFill: "#fff",
+   			   pointHighlightStroke: "rgba(220,220,220,1)",
+   			   data: [{{player.hit_AVG}}, {{player.hit_SLG}}, {{player.hit_OB}},{{player.hit_FLD}}],
+   			 }
+   		   ]
+   		 },
+   		 options: {
+   		   responsive: true,
+   	   chartArea: {'width': '100%', 'height': '80%'},
+   	   scale: {
+   		 pointLabels: {
+   		 fontSize: 12
+   	   }
+   	   }
+   		 }
+   	   });
+   	   </script>
+	</div>
+	<div class="col">
+		<canvas id="pitchradarChart{{player.counter}}" style="max-width: 500px;"></canvas>
+ 	   <script>
+ 	   //radar
+ 	   var ctxR = document.getElementById("pitchradarChart{{player.counter}}").getContext('2d');
+ 	   var myRadarChart = new Chart(ctxR, {
+ 		 type: 'radar',
+ 		 data: {
+ 		   labels: ["IP", "H", "R", "SO"],
+ 		   datasets: [
+ 			 {
+ 			   label: "{{player.firstName}} {{player.lastName}}\'s Pitching Statistics",
+ 			   fillColor: "rgba(220,220,220,0.2)",
+ 			   strokeColor: "rgba(220,220,220,1)",
+ 			   pointColor: "rgba(220,220,220,1)",
+ 			   pointStrokeColor: "#fff",
+ 			   pointHighlightFill: "#fff",
+ 			   pointHighlightStroke: "rgba(220,220,220,1)",
+ 			   data: [{{player.pitch_IP}}, {{player.pitch_H}}, {{player.pitch_R}},{{player.pitch_SO}}],
+ 			 }
+ 		   ]
+ 		 },
+ 		 options: {
+ 		   responsive: true,
+ 	   chartArea: {'width': '100%', 'height': '80%'},
+ 	   scale: {
+ 		 pointLabels: {
+ 		 fontSize: 12
+ 	   }
+ 	   }
+ 		 }
+ 	   });
+ 	   </script>
+ 	 </div>
+	</div><!--Row-->
+	 <div class="table-responsive">
+	 <table class="table table-striped">
+			 <caption>Career Hitting Statistics</caption>
+			 <thead>
+			   <tr>
+				 <th scope="col" class="text-hide">Season</th>
+				 <th scope="col">AVG</th>
+				 <th scope="col">GP</th>
+				 <th scope="col">GS</th>
+				 <th scope="col">AB</th>
+				 <th scope="col">R</th>
+				 <th scope="col">H</th>
+				 <th scope="col">2B</th>
+				 <th scope="col">3B</th>
+				 <th scope="col">HR</th>
+				 <th scope="col">RBI</th>
+				 <th scope="col">SLG%</th>
+				 <th scope="col">BB</th>
+				 <th scope="col">HBP</th>
+				 <th scope="col">SO</th>
+				 <th scope="col">GDP</th>
+				 <th scope="col">OB%</th>
+				 <th scope="col">SF</th>
+				 <th scope="col">SH</th>
+				 <th scope="col">SB</th>
+				 <th scope="col">PO</th>
+				 <th scope="col">A</th>
+				 <th scope="col">E</th>
+				 <th scope="col">FLD%</th>
+			   </tr>
+			 </thead>
+			 <tbody>
 
-    								<tr>
-    									<th scope="row">2018</th>
-    									<td class="text-center">.000</td>
-    									<td class="text-center">12</td>
-    									<td class="text-center">2</td>
-    									<td class="text-center">7</td>
-    									<td class="text-center">3</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">.000</td>
-    									<td class="text-center">1</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">2</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">.125</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">1</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">4</td>
-    									<td class="text-center">5</td>
-    									<td class="text-center">0</td>
-    									<td class="text-center">1.000</td>
-    								</tr>
+				 <tr>
+				   <th scope="row">Total</th>
+				   <td class="text-center">{{player.hit_AVG}}</td>
+				   <td class="text-center">{{player.hit_GP}}</td>
+				   <td class="text-center">{{player.hit_GS}}</td>
+				   <td class="text-center">{{player.hit_AB}}</td>
+				   <td class="text-center">{{player.hit_R}}</td>
+				   <td class="text-center">{{player.hit_H}}</td>
+				   <td class="text-center">{{player.hit_2B}}</td>
+				   <td class="text-center">{{player.hit_3B}}</td>
+				   <td class="text-center">{{player.hit_HR}}</td>
+				   <td class="text-center">{{player.hit_RBI}}</td>
+				   <td class="text-center">{{player.hit_SLG}}</td>
+				   <td class="text-center">{{player.hit_BB}}</td>
+				   <td class="text-center">{{player.hit_HBP}}</td>
+				   <td class="text-center">{{player.hit_SO}}</td>
+				   <td class="text-center">{{player.hit_GDP}}</td>
+				   <td class="text-center">{{player.hit_OB}}</td>
+				   <td class="text-center">{{player.hit_SF}}</td>
+				   <td class="text-center">{{player.hit_SH}}</td>
+				   <td class="text-center">{{player.hit_SB}}</td>
+				   <td class="text-center">{{player.hit_PO}}</td>
+				   <td class="text-center">{{player.hit_A}}</td>
+				   <td class="text-center">{{player.hit_E}}</td>
+				   <td class="text-center">{{player.hit_FLD}}</td>
+				 </tr>
 
-    						</tbody>
-    						<tfoot>
-    							<tr>
-    								<th scope="row">Total</th>
-    								<td class="text-center">.000</td>
-    								<td class="text-center">12</td>
-    								<td class="text-center">2</td>
-    								<td class="text-center">7</td>
-    								<td class="text-center">3</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">.000</td>
-    								<td class="text-center">1</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">2</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">.125</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">1</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">4</td>
-    								<td class="text-center">5</td>
-    								<td class="text-center">0</td>
-    								<td class="text-center">1.000</td>
-    							</tr>
-    						</tfoot>
-    					</table>
-		<!--Modal-->
-  		</div>
-		<div class="modal-footer">
-  	     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  	  </div>
-  </div>
-  </div>
-  </div>
-  {% endfor %}
+			 </tbody>
+			 </table>
+			 <br>
+			 <br>
+			 <table class="table table-striped">
+			 <caption>Career Pitching Statistics</caption>
+			 <thead>
+			   <tr>
+				 <th scope="col" class="text-hide">Season</th>
+				 <th scope="col">ERA</th>
+				 <th scope="col">W</th>
+				 <th scope="col">L</th>
+				 <th scope="col">APP</th>
+				 <th scope="col">GS</th>
+				 <th scope="col">CG</th>
+				 <th scope="col">SHO</th>
+				 <th scope="col">SV</th>
+				 <th scope="col">IP</th>
+				 <th scope="col">H</th>
+				 <th scope="col">R</th>
+				 <th scope="col">ER</th>
+				 <th scope="col">BB</th>
+				 <th scope="col">SO</th>
+				 <th scope="col">2B</th>
+				 <th scope="col">3B</th>
+				 <th scope="col">HR</th>
+				 <th scope="col">BF</th>
+				 <th scope="col">BAVG</th>
+				 <th scope="col">WP</th>
+				 <th scope="col">HBP</th>
+				 <th scope="col">BK</th>
+				 <th scope="col">SFA</th>
+				 <th scope="col">SHA</th>
+			   </tr>
+			 </thead>
+			 <tbody>
+
+				 <tr>
+				   <th scope="row">Total</th>
+				   <td class="text-center">{{player.pitch_ERA}}</td>
+				   <td class="text-center">{{player.pitch_W}}</td>
+				   <td class="text-center">{{player.pitch_L}}</td>
+				   <td class="text-center">{{player.pitch_APP}}</td>
+				   <td class="text-center">{{player.pitch_GS}}</td>
+				   <td class="text-center">{{player.pitch_CG}}</td>
+				   <td class="text-center">{{player.pitch_SHO}}</td>
+				   <td class="text-center">{{player.pitch_SV}}</td>
+				   <td class="text-center">{{player.pitch_IP}}</td>
+				   <td class="text-center">{{player.pitch_H}}</td>
+				   <td class="text-center">{{player.pitch_R}}</td>
+				   <td class="text-center">{{player.pitch_ER}}</td>
+				   <td class="text-center">{{player.pitch_BB}}</td>
+				   <td class="text-center">{{player.pitch_SO}}</td>
+				   <td class="text-center">{{player.pitch_2B}}</td>
+				   <td class="text-center">{{player.pitch_3B}}</td>
+				   <td class="text-center">{{player.pitch_HR}}</td>
+				   <td class="text-center">{{player.pitch_BF}}</td>
+				   <td class="text-center">{{player.pitch_BAVG}}</td>
+				   <td class="text-center">{{player.pitch_WP}}</td>
+				   <td class="text-center">{{player.pitch_HBP}}</td>
+				   <td class="text-center">{{player.pitch_BK}}</td>
+				   <td class="text-center">{{player.pitch_SFA}}</td>
+				   <td class="text-center">{{player.pitch_SHA}}</td>
+
+				 </tr>
+
+			 </tbody>
+			 </table>
+			 </div>
+ <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+		</div>
+ </div><!--Modal-->
+ </div>
+ </div>
+ </div>
+ {% endfor %}
 
   <!---->
 </section>
