@@ -68,7 +68,7 @@
             <br>
             <strong>Hometown :{{player.Hometown}}</strong>
             <br>
-            <strong>High School :{{player.HighSchool}}</strong>
+            <strong>High School :{{player.Highschool}}</strong>
             <br>
             <strong>College :{{player.College}}</strong>
             <br>
@@ -124,24 +124,24 @@
       </div>
 
       <div class="col-7">
-        <canvas id="radarChart" style="max-width: 500px;"></canvas>
+        <canvas id="hitradarChart{{player.counter}}" style="max-width: 500px;"></canvas>
         <script>
         //radar
-        var ctxR = document.getElementById("radarChart").getContext('2d');
+        var ctxR = document.getElementById("hitradarChart{{player.counter}}").getContext('2d');
         var myRadarChart = new Chart(ctxR, {
           type: 'radar',
           data: {
-            labels: ["Batting Average(avg)", "Slugging Percentage(SL)", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+            labels: ["AVG", "SLG", "OB", "FLD"],
             datasets: [
               {
-                label: "My First dataset",
+                label: "{{player.firstName}} {{player.lastName}}\'s Hitting Statistics",
                 fillColor: "rgba(220,220,220,0.2)",
                 strokeColor: "rgba(220,220,220,1)",
                 pointColor: "rgba(220,220,220,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 90, 81, 56, 55, 40]
+                data: [{{player.hit_AVG}}, {{player.hit_SLG}}, {{player.hit_OB}},{{player.hit_FLD}}],
               }
             ]
           },
@@ -150,7 +150,40 @@
         chartArea: {'width': '100%', 'height': '80%'},
         scale: {
           pointLabels: {
-          fontSize: 15
+          fontSize: 12
+        }
+        }
+          }
+        });
+        </script>
+
+        <canvas id="pitchradarChart{{player.counter}}" style="max-width: 500px;"></canvas>
+        <script>
+        //radar
+        var ctxR = document.getElementById("pitchradarChart{{player.counter}}").getContext('2d');
+        var myRadarChart = new Chart(ctxR, {
+          type: 'radar',
+          data: {
+            labels: ["IP", "H", "R", "SO"],
+            datasets: [
+              {
+                label: "{{player.firstName}} {{player.lastName}}\'s Pitching Statistics",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [{{player.pitch_IP}}, {{player.pitch_H}}, {{player.pitch_R}},{{player.pitch_SO}}],
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+        chartArea: {'width': '100%', 'height': '80%'},
+        scale: {
+          pointLabels: {
+          fontSize: 12
         }
         }
           }
@@ -161,15 +194,144 @@
       <div class="col-md-4">
        <div class="prof-info">
 
-       <div class="info"><label></i>Position :</label>  <span>6-9-1993</span></div>
-       <div class="info"><label></i>Height :</label>  <span>{{Height}}</span></div>
-       <div class="info"><label></i>Weight :</label>  <span>65Kg</span></div>
-       <div class="info"><label></i>Class :</label>  <span>Maharashtra , India</span></div>
-       <div class="info"><label></i>Hometown :</label>  <span>656605</span></div>
-     <div class="info"><label></i>Hight School :</label>  <span>656605</span></div>
+       <div class="info"><label></i>Position :</label>  <span>{{player.Position}}</span></div>
+       <div class="info"><label></i>Height :</label>  <span>{{player.Height}}</span></div>
+       <div class="info"><label></i>Weight :</label>  <span>{{player.Weight}}</span></div>
+       <div class="info"><label></i>Class :</label>  <span>{{player.Class}}</span></div>
+       <div class="info"><label></i>Hometown :</label>  <span>{{player.Hometown}}</span></div>
+     <div class="info"><label></i>Hight School :</label>  <span>{{player.Highschool}}</span></div>
         </div>
       </div>
-    </div>
+      </div>
+      <div class="table-responsive">
+      <table class="table table-striped">
+              <caption>Career Hitting Statistics</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="text-hide">Season</th>
+                  <th scope="col">AVG</th>
+                  <th scope="col">GP</th>
+                  <th scope="col">GS</th>
+                  <th scope="col">AB</th>
+                  <th scope="col">R</th>
+                  <th scope="col">H</th>
+                  <th scope="col">2B</th>
+                  <th scope="col">3B</th>
+                  <th scope="col">HR</th>
+                  <th scope="col">RBI</th>
+                  <th scope="col">SLG%</th>
+                  <th scope="col">BB</th>
+                  <th scope="col">HBP</th>
+                  <th scope="col">SO</th>
+                  <th scope="col">GDP</th>
+                  <th scope="col">OB%</th>
+                  <th scope="col">SF</th>
+                  <th scope="col">SH</th>
+                  <th scope="col">SB</th>
+                  <th scope="col">PO</th>
+                  <th scope="col">A</th>
+                  <th scope="col">E</th>
+                  <th scope="col">FLD%</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td class="text-center">{{player.hit_AVG}}</td>
+                    <td class="text-center">{{player.hit_GP}}</td>
+                    <td class="text-center">{{player.hit_GS}}</td>
+                    <td class="text-center">{{player.hit_AB}}</td>
+                    <td class="text-center">{{player.hit_R}}</td>
+                    <td class="text-center">{{player.hit_H}}</td>
+                    <td class="text-center">{{player.hit_2B}}</td>
+                    <td class="text-center">{{player.hit_3B}}</td>
+                    <td class="text-center">{{player.hit_HR}}</td>
+                    <td class="text-center">{{player.hit_RBI}}</td>
+                    <td class="text-center">{{player.hit_SLG}}</td>
+                    <td class="text-center">{{player.hit_BB}}</td>
+                    <td class="text-center">{{player.hit_HBP}}</td>
+                    <td class="text-center">{{player.hit_SO}}</td>
+                    <td class="text-center">{{player.hit_GDP}}</td>
+                    <td class="text-center">{{player.hit_OB}}</td>
+                    <td class="text-center">{{player.hit_SF}}</td>
+                    <td class="text-center">{{player.hit_SH}}</td>
+                    <td class="text-center">{{player.hit_SB}}</td>
+                    <td class="text-center">{{player.hit_PO}}</td>
+                    <td class="text-center">{{player.hit_A}}</td>
+                    <td class="text-center">{{player.hit_E}}</td>
+                    <td class="text-center">{{player.hit_FLD}}</td>
+                  </tr>
+
+              </tbody>
+              </table>
+              <br>
+              <br>
+              <table class="table table-striped">
+              <caption>Career Pitching Statistics</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="text-hide">Season</th>
+                  <th scope="col">ERA</th>
+                  <th scope="col">W</th>
+                  <th scope="col">L</th>
+                  <th scope="col">APP</th>
+                  <th scope="col">GS</th>
+                  <th scope="col">CG</th>
+                  <th scope="col">SHO</th>
+                  <th scope="col">SV</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">H</th>
+                  <th scope="col">R</th>
+                  <th scope="col">ER</th>
+                  <th scope="col">BB</th>
+                  <th scope="col">SO</th>
+                  <th scope="col">2B</th>
+                  <th scope="col">3B</th>
+                  <th scope="col">HR</th>
+                  <th scope="col">BF</th>
+                  <th scope="col">BAVG</th>
+                  <th scope="col">WP</th>
+                  <th scope="col">HBP</th>
+                  <th scope="col">BK</th>
+                  <th scope="col">SFA</th>
+                  <th scope="col">SHA</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td class="text-center">{{player.pitch_ERA}}</td>
+                    <td class="text-center">{{player.pitch_W}}</td>
+                    <td class="text-center">{{player.pitch_L}}</td>
+                    <td class="text-center">{{player.pitch_APP}}</td>
+                    <td class="text-center">{{player.pitch_GS}}</td>
+                    <td class="text-center">{{player.pitch_CG}}</td>
+                    <td class="text-center">{{player.pitch_SHO}}</td>
+                    <td class="text-center">{{player.pitch_SV}}</td>
+                    <td class="text-center">{{player.pitch_IP}}</td>
+                    <td class="text-center">{{player.pitch_H}}</td>
+                    <td class="text-center">{{player.pitch_R}}</td>
+                    <td class="text-center">{{player.pitch_ER}}</td>
+                    <td class="text-center">{{player.pitch_BB}}</td>
+                    <td class="text-center">{{player.pitch_SO}}</td>
+                    <td class="text-center">{{player.pitch_2B}}</td>
+                    <td class="text-center">{{player.pitch_3B}}</td>
+                    <td class="text-center">{{player.pitch_HR}}</td>
+                    <td class="text-center">{{player.pitch_BF}}</td>
+                    <td class="text-center">{{player.pitch_BAVG}}</td>
+                    <td class="text-center">{{player.pitch_WP}}</td>
+                    <td class="text-center">{{player.pitch_HBP}}</td>
+                    <td class="text-center">{{player.pitch_BK}}</td>
+                    <td class="text-center">{{player.pitch_SFA}}</td>
+                    <td class="text-center">{{player.pitch_SHA}}</td>
+
+                  </tr>
+
+              </tbody>
+              </table>
+              </div>
   <div class="modal-footer">
    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
